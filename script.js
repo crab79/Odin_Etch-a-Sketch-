@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function() {
       }
     }
     
-    // drawing
+    // Drawing on PC
     var isMouseDown = false;
     container.addEventListener("mousedown", function(event) {
       if (event.target.classList.contains("grid-square")) {
@@ -30,6 +30,22 @@ document.addEventListener("DOMContentLoaded", function() {
     });
     container.addEventListener("mouseleave", function() {
       isMouseDown = false;
+    });
+    // Drawing on Mobile
+    var isDrawing = false;
+    container.addEventListener("touchstart", function(event) {
+      if (event.target.classList.contains("grid-square")) {
+        isDrawing = true;
+        event.target.style.backgroundColor = "black"; /* 使用你想要的顏色 */
+      }
+    });
+    container.addEventListener("touchmove", function(event) {
+      if (isDrawing && event.target.classList.contains("grid-square")) {
+        event.target.style.backgroundColor = "black"; /* 使用你想要的顏色 */
+      }
+    });
+    container.addEventListener("touchend", function() {
+      isDrawing = false;
     });
     
     // Reset-button
